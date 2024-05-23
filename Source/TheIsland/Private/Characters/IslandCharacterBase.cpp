@@ -1,7 +1,7 @@
 // RW&MH
 
 
-#include "IslandCharacterBase.h"
+#include "Characters/IslandCharacterBase.h"
 
 // Sets default values
 AIslandCharacterBase::AIslandCharacterBase()
