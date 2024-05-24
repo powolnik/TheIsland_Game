@@ -23,6 +23,10 @@ void ATheIslandPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 }
 
+void ATheIslandPlayerController::Move(const FInputActionsValue& InputActionValue)
+{
+}
+
 void ATheIslandPlayerController::SetupInputSubsystem()
 {
 	InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
