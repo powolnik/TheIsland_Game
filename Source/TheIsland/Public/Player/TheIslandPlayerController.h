@@ -5,8 +5,8 @@
 #include "TheIslandPlayerController.generated.h"
 
 /**
- * region declared below provides forward declarations for UInputMappingContext,
- * UEnhancedInputLocalPlayerSubsystem, and FInputActionsValue.
+ * @file TheIslandPlayerController.h RANDOMWORDS
+ * RANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDS
  * 
  * in the meanwhile, it will demonstrate usage of Doxygen-style comments
  * and `#pragma region` for organizing code
@@ -23,7 +23,9 @@
  *       are foldable in supporting IDEs, enhancing code organization and readability.
  */
 
+/*#ifndef*/
 #pragma region ForwardDeclaration
+
 	/**
 	 * @class UInputMappingContext
 	 * @brief Forward declaration of UInputMappingContext class.
@@ -49,7 +51,8 @@ class UEnhancedInputLocalPlayerSubsystem;
 	*/
 struct FInputActionsValue;
 
-#pragma endregion ForwardDeclarations
+/*#endif*/
+#pragma endregion ForwardDeclaration 
 
 UCLASS()
 class THEISLAND_API ATheIslandPlayerController : public APlayerController
