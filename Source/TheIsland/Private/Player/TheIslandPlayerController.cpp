@@ -1,5 +1,7 @@
 #include "Player/TheIslandPlayerController.h"
+
 #include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
 
 ATheIslandPlayerController::ATheIslandPlayerController()
 {
@@ -15,12 +17,17 @@ void ATheIslandPlayerController::BeginPlay()
 	SetupMouseCursorProperties();
 }
 
+void ATheIslandPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
+}
+
 void ATheIslandPlayerController::SetupInputSubsystem()
 {
-	check(PlayerInputContext);
-
 	InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	check(InputSubsystem);
+	check(PlayerInputContext);
 	InputSubsystem->AddMappingContext(PlayerInputContext, 0);
 }
 
