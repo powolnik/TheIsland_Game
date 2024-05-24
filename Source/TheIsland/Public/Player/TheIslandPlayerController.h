@@ -6,24 +6,23 @@
 
 /**
  * @file TheIslandPlayerController.h RANDOMWORDS
- * RANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDS
+ * @brief RANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDSRANDOM WORDS
  * 
  * in the meanwhile, it will demonstrate usage of Doxygen-style comments
  * and `#pragma region` for organizing code
  */
 
 /**
- * @brief ForwardDeclarations
- * 
- * This region contains forward declarations of classes and structs.
- * These declarations are used to inform the compiler about the existence
- * of these types before they are fully defined.
- * 
- * @note You can use `#pragma region` to create named regions of code that
- *       are foldable in supporting IDEs, enhancing code organization and readability.
+ * @region ForwardDeclaration
+ * @brief i wanted to find a way to improve 
+ * 		readability of code i write, below i use it for the very first time
+ *		possibly its totally unnecessery it that specific case, but im freakin proud of myself. NO REASON
+ *		contains forward declarations of classes and structs.
+ *		These declarations are used to inform the compiler about the existence
+ *		of these types before they are fully defined.
  */
+#define ForwardDeclaration
 
-/*#ifndef*/
 #pragma region ForwardDeclaration
 
 	/**
@@ -31,15 +30,13 @@
 	 * @brief Forward declaration of UInputMappingContext class.
 	 *
 	 * UInputMappingContext is used for mapping input actions within the input system.
-	 *	DUPA
+	 * DUPA
 	 */
-class UInputMappingContext; ///hover over class name too see how it works in tooltips
-
+class UInputMappingContext; 
+											//idk why it provides tooltip for UInputMappingContext and for FInputActionsValue, but does not do that for UEnhancedInputLocalPlayerSubsystem
 	/**
 	 * @class UEnhancedInputLocalPlayerSubsystem
-	 * @brief Forward declaration of UEnhancedInputLocalPlayerSubsystem class.
-	 *
-	 * UEnhancedInputLocalPlayerSubsystem manages enhanced input handling for a local player.
+	 * @brief Forward declaration of UEnhancedInputLocalPlayerSubsystem class. which manages enhanced input handling for a local player.
 	 */
 class UEnhancedInputLocalPlayerSubsystem;
 
@@ -51,7 +48,6 @@ class UEnhancedInputLocalPlayerSubsystem;
 	*/
 struct FInputActionsValue;
 
-/*#endif*/
 #pragma endregion ForwardDeclaration 
 
 UCLASS()
