@@ -2,14 +2,21 @@
 
 
 #include "Characters/TheIslandEnemy.h"
+#include "TheIsland/TheIsland.h"
 
-void ATheIslandEnemy::HighlightActor()
+ATheIslandEnemy::ATheIslandEnemy()
 {
-	bHighlighted = true;
+	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+	GetMesh()->SetCollisionObjectType(ECC_Pawn);
 }
 
-void ATheIslandEnemy::UnHighlightActor()
+void ATheIslandEnemy::HighlightActor(bool bHighlight)
 {
-	bHighlighted = false;
+	if (bHighlight) //true
+	{
+		GetMesh()->SetRenderCustomDepth(true);
+		GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+		return;
+	}
+	GetMesh()->SetRenderCustomDepth(false);
 }
-

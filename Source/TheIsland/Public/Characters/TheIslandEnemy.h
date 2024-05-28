@@ -14,10 +14,7 @@ class THEISLAND_API ATheIslandEnemy : public ATheIslandCharacterBase, public IEn
 	GENERATED_BODY()
 
 public:
-	virtual void HighlightActor() override;
-	virtual void UnHighlightActor() override;
-
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false;
+	ATheIslandEnemy();
+	virtual void HighlightActor(bool bHighlight) override;
+	/*virtual void UnHighlightActor(bool bHighlight) override;*/
 };
