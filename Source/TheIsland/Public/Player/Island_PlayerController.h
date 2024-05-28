@@ -24,13 +24,12 @@ class THEISLAND_API AIsland_PlayerController : public APlayerController
 public:
 	AIsland_PlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
-	//void EvaluateHighlight(/*TScriptInterface<*/IEnemyInterface*/*>*/ ThisActor, /*TScriptInterface<*/IEnemyInterface*/*>*/ LastActor);
 
-  	UPROPERTY(EditAnywhere, Category = "Input")
+  	UPROPERTY(EditAnywhere, Category = "Island|Input")
 	TObjectPtr<UInputMappingContext> PlayerInputContext;
 	
 private:
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditAnywhere, Category = "Island|Input")
 	TObjectPtr<UInputAction> MoveAction;
 
 	TScriptInterface<IEnemyInterface> LastActor;

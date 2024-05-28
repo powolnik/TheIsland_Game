@@ -1,5 +1,7 @@
 // RW&MH
+
 #include "Characters/CharacterBase.h"
+
 
 ACharacterBase::ACharacterBase()
 {

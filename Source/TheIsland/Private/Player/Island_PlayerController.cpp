@@ -43,24 +43,17 @@ void AIsland_PlayerController::CursorTrace()
 	}
 	else if (LastActor == nullptr && ThisActor != nullptr)
 	{
-		ThisActor->HighlightActor(true);
-		
-		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case B: LastActor is null, ThisActor is valid\nHighlight ThisActor"));
+		ThisActor->HighlightActor(true);	// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case B: LastActor is null, ThisActor is valid\nHighlight ThisActor"));
 	}
 	else if (LastActor != nullptr && ThisActor == nullptr)
 	{
-		LastActor->HighlightActor(false);
-		
-		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case C: LastActor is valid, ThisActor is null\nUnHighlight LastActor"));
+		LastActor->HighlightActor(false);	// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case C: LastActor is valid, ThisActor is null\nUnHighlight LastActor"));
 	}
 	else if (LastActor != nullptr && ThisActor != nullptr && LastActor != ThisActor)
 	{
 		LastActor->HighlightActor(false);
-		ThisActor->HighlightActor(true);
-		
-		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case D: Both actors are valid and different\nUnHighlight LastActor, and Highlight ThisActor"));
-	}
-	// Case E: Both actors are valid and the same (no action needed)
+		ThisActor->HighlightActor(true);	// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case D: Both actors are valid and different\nUnHighlight LastActor, and Highlight ThisActor"));
+	}	// Case E: Both actors are valid and the same (no action needed)
 }
 
 void AIsland_PlayerController::SetupInputComponent()

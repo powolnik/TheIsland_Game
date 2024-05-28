@@ -1,10 +1,8 @@
 // RW&MH
 
-
 #include "Characters/EnemyCharacter.h"
-
-#include "GeometryCollection/GeometryCollectionSimulationTypes.h"
 #include "TheIsland/TheIsland.h"
+
 
 AEnemyCharacter::AEnemyCharacter()
 {
