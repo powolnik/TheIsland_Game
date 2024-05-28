@@ -1,7 +1,8 @@
 // RW&MH
 
-
 #include "Characters/TheIslandCharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
+
 
 ATheIslandCharacter::ATheIslandCharacter()
 {

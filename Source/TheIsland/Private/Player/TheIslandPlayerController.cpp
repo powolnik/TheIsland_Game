@@ -2,6 +2,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 
 ATheIslandPlayerController::ATheIslandPlayerController()
@@ -11,9 +12,64 @@ ATheIslandPlayerController::ATheIslandPlayerController()
 	DefaultMouseCursor = EMouseCursor::Default;
 }
 
+void ATheIslandPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void ATheIslandPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+
+	LastActor = ThisActor;
+	ThisActor = CursorHit.GetActor();
+
+	// Case A: Both actors are null
+	if (LastActor == nullptr && ThisActor == nullptr)
+	{
+		// Do nothing
+	}
+	// Case B: LastActor is null, ThisActor is valid
+	else if (LastActor == nullptr && ThisActor != nullptr)
+	{
+		ThisActor->HighlightActor();
+	}
+	// Case C: LastActor is valid, ThisActor is null
+	else if (LastActor != nullptr && ThisActor == nullptr)
+	{
+		LastActor->UnHighlightActor();
+	}
+	// Case D: Both actors are valid and different
+	else if (LastActor != nullptr && ThisActor != nullptr && LastActor != ThisActor)
+	{
+		LastActor->UnHighlightActor();
+		ThisActor->HighlightActor();
+	}
+	// Case E: Both actors are valid and the same (no action needed)
+	
+/**
+ *Line trace from cursor. There are several scenarios:
+ *  A.LastActor is null ThisActor is null
+ *		- Do nothing
+ *  B.LastActor is nuLL ThisActor is valid
+ *		- Highlight ThisActor
+ *  C.LastActor is vaLid && ThisActor is nul L
+ *		- UnHighLight LastActor
+ *  D. Both actors are vaLid, but LastActor != ThisActor
+ *		- UnHighlight LastActor, and Highlight ThisActor
+ *  E. Both actors are vaLid, and LastActor == ThisActor
+ *		- Do nothing
+ */
+}
+
 void ATheIslandPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	SetupInputSubsystem();
 	SetupMouseCursorProperties();
 }
@@ -29,10 +85,11 @@ void ATheIslandPlayerController::SetupInputComponent()
 void ATheIslandPlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
-	const FRotator Rotation(0.1f, GetControlRotation().Yaw, 0.1f);
+	const FRotator Rotation = GetControlRotation();
+	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
 	
-	const FVector ForwardDirection = FRotationMatrix(Rotation).GetUnitAxis(EAxis::X);
-	const FVector RightDirection = FRotationMatrix(Rotation).GetUnitAxis(EAxis::Y);
+	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{

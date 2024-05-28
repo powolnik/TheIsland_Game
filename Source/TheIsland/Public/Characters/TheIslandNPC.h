@@ -6,9 +6,7 @@
 #include "Characters/TheIslandCharacterBase.h"
 #include "TheIslandNPC.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class THEISLAND_API ATheIslandNPC : public ATheIslandCharacterBase
 {
