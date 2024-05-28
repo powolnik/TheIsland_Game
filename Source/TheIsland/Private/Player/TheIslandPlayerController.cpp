@@ -2,7 +2,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
-#include "Interaction/HighlightActorInterface.h"
+#include "Interaction/EnemyInterface.h"
 
 
 ATheIslandPlayerController::ATheIslandPlayerController()
@@ -28,34 +28,28 @@ void ATheIslandPlayerController::CursorTrace()
 	LastActor = ThisActor;
 	ThisActor = CursorHit.GetActor();
 	
-	// Case A: Both actors are null
 	if (LastActor == nullptr && ThisActor == nullptr)
 	{
-		// Do nothing
-		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Do nothing"));
+		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case A: Both actors are null\nDo nothing"));
 	}
-	// Case B: LastActor is null, ThisActor is valid
 	else if (LastActor == nullptr && ThisActor != nullptr)
 	{
 		ThisActor->HighlightActor(true);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Highlight ThisActor"));
+		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case B: LastActor is null, ThisActor is valid\nHighlight ThisActor"));
 	}
-	// Case C: LastActor is valid, ThisActor is null
 	else if (LastActor != nullptr && ThisActor == nullptr)
 	{
 		LastActor->HighlightActor(false);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: UnHighlight LastActor"));
+		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case C: LastActor is valid, ThisActor is null\nUnHighlight LastActor"));
 	}
-	// Case D: Both actors are valid and different
 	else if (LastActor != nullptr && ThisActor != nullptr && LastActor != ThisActor)
 	{
 		LastActor->HighlightActor(false);
 		ThisActor->HighlightActor(true);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: UnHighlight LastActor, and Highlight ThisActor"));
+		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case D: Both actors are valid and different\nUnHighlight LastActor, and Highlight ThisActor"));
 	}
 	// Case E: Both actors are valid and the same (no action needed)
 	

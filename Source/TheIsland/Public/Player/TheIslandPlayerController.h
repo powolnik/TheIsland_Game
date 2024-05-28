@@ -24,6 +24,7 @@ class THEISLAND_API ATheIslandPlayerController : public APlayerController
 public:
 	ATheIslandPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
+	void EvaluateHighlight(/*TScriptInterface<*/IEnemyInterface*/*>*/ ThisActor, /*TScriptInterface<*/IEnemyInterface*/*>*/ LastActor);
 
 private:
   	UPROPERTY(EditAnywhere, Category = "Input")

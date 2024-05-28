@@ -15,10 +15,7 @@ class UEnemyInterface : public UHighlightActorInterface
 };
 
 
-class THEISLAND_API IEnemyInterface
+class THEISLAND_API IEnemyInterface : public IHighlightActorInterface
 {
 	GENERATED_BODY()
-
-public:
-	virtual void HighlightActor(bool bHighlight = false) = 0;
 };

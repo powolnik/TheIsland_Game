@@ -19,7 +19,5 @@ class THEISLAND_API IHighlightActorInterface
 	GENERATED_BODY()
 
 public:
-	/*virtual void HighlightActor(bool bHighlight = false) = 0;*/
 	virtual void HighlightActor(bool bHighlight = false) = 0;
-	/*virtual void UnHighlightActor(bool bHighlight) = 0;*/
 };

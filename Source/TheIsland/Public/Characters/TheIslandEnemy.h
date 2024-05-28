@@ -16,5 +16,4 @@ class THEISLAND_API ATheIslandEnemy : public ATheIslandCharacterBase, public IEn
 public:
 	ATheIslandEnemy();
 	virtual void HighlightActor(bool bHighlight) override;
-	/*virtual void UnHighlightActor(bool bHighlight) override;*/
 };
