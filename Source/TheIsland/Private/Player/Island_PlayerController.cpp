@@ -1,25 +1,34 @@
-#include "Player/TheIslandPlayerController.h"
+#include "Player/Island_PlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Components/InputComponent.h"
 #include "Interaction/EnemyInterface.h"
+#include "InputMappingContext.h"
 
 
-ATheIslandPlayerController::ATheIslandPlayerController()
+AIsland_PlayerController::AIsland_PlayerController()
 {
 	bReplicates = true;
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
 }
 
-void ATheIslandPlayerController::PlayerTick(float DeltaTime)
+void AIsland_PlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	SetupInputSubsystem();
+	SetupMouseCursorProperties();
+}
+
+void AIsland_PlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 
 	CursorTrace();
 }
 
-void ATheIslandPlayerController::CursorTrace()
+void AIsland_PlayerController::CursorTrace()
 {
 	FHitResult CursorHit;
 	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
@@ -30,61 +39,39 @@ void ATheIslandPlayerController::CursorTrace()
 	
 	if (LastActor == nullptr && ThisActor == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case A: Both actors are null\nDo nothing"));
+		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case A: Both actors are null\nDo nothing"));
 	}
 	else if (LastActor == nullptr && ThisActor != nullptr)
 	{
 		ThisActor->HighlightActor(true);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case B: LastActor is null, ThisActor is valid\nHighlight ThisActor"));
+		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case B: LastActor is null, ThisActor is valid\nHighlight ThisActor"));
 	}
 	else if (LastActor != nullptr && ThisActor == nullptr)
 	{
 		LastActor->HighlightActor(false);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case C: LastActor is valid, ThisActor is null\nUnHighlight LastActor"));
+		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case C: LastActor is valid, ThisActor is null\nUnHighlight LastActor"));
 	}
 	else if (LastActor != nullptr && ThisActor != nullptr && LastActor != ThisActor)
 	{
 		LastActor->HighlightActor(false);
 		ThisActor->HighlightActor(true);
 		
-		UE_LOG(LogTemp, Warning, TEXT("Cursor: Case D: Both actors are valid and different\nUnHighlight LastActor, and Highlight ThisActor"));
+		// UE_LOG(LogTemp, Warning, TEXT("Cursor: Case D: Both actors are valid and different\nUnHighlight LastActor, and Highlight ThisActor"));
 	}
 	// Case E: Both actors are valid and the same (no action needed)
-	
-/**
- *Line trace from cursor. There are several scenarios:
- *  A.LastActor is null ThisActor is null
- *		- Do nothing
- *  B.LastActor is nuLL ThisActor is valid
- *		- Highlight ThisActor
- *  C.LastActor is vaLid && ThisActor is nul L
- *		- UnHighLight LastActor
- *  D. Both actors are vaLid, but LastActor != ThisActor
- *		- UnHighlight LastActor, and Highlight ThisActor
- *  E. Both actors are vaLid, and LastActor == ThisActor
- *		- Do nothing
- */
 }
 
-void ATheIslandPlayerController::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	SetupInputSubsystem();
-	SetupMouseCursorProperties();
-}
-
-void ATheIslandPlayerController::SetupInputComponent()
+void AIsland_PlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 	
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
-	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATheIslandPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AIsland_PlayerController::Move);
 }
 
-void ATheIslandPlayerController::Move(const FInputActionValue& InputActionValue)
+void AIsland_PlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
 	const FRotator Rotation = GetControlRotation();
@@ -100,15 +87,15 @@ void ATheIslandPlayerController::Move(const FInputActionValue& InputActionValue)
 	}
 }
 
-void ATheIslandPlayerController::SetupInputSubsystem()
+void AIsland_PlayerController::SetupInputSubsystem()
 {
-	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(InputSubsystem);
-	check(PlayerInputContext);
-	InputSubsystem->AddMappingContext(PlayerInputContext, 0);
+	UEnhancedInputLocalPlayerSubsystem* InputSubsystem =
+		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
+	UInputMappingContext* ValidInputContext = CastChecked<UInputMappingContext>(PlayerInputContext);
+	InputSubsystem->AddMappingContext(ValidInputContext , 0);
 }
 
-void ATheIslandPlayerController::SetupMouseCursorProperties()
+void AIsland_PlayerController::SetupMouseCursorProperties()
 {
 	FInputModeGameAndUI InputModeData;
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "Interaction/EnemyInterface.h"
-#include "TheIslandPlayerController.generated.h"
+#include "Island_PlayerController.generated.h"
 
 #pragma region ForwardDeclarations
 	class UInputMappingContext;
@@ -17,19 +17,19 @@
 
 
 UCLASS()
-class THEISLAND_API ATheIslandPlayerController : public APlayerController
+class THEISLAND_API AIsland_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-	ATheIslandPlayerController();
+	AIsland_PlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
-	void EvaluateHighlight(/*TScriptInterface<*/IEnemyInterface*/*>*/ ThisActor, /*TScriptInterface<*/IEnemyInterface*/*>*/ LastActor);
+	//void EvaluateHighlight(/*TScriptInterface<*/IEnemyInterface*/*>*/ ThisActor, /*TScriptInterface<*/IEnemyInterface*/*>*/ LastActor);
 
-private:
   	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> PlayerInputContext;
-
+	
+private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 

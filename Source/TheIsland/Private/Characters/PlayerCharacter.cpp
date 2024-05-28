@@ -1,10 +1,10 @@
 // RW&MH
 
-#include "Characters/TheIslandCharacter.h"
+#include "Characters/PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 
-ATheIslandCharacter::ATheIslandCharacter()
+APlayerCharacter::APlayerCharacter()
 {
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);

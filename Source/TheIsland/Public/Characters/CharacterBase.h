@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "TheIslandCharacterBase.generated.h"
+#include "CharacterBase.generated.h"
 
 
 UCLASS(Abstract)
-class THEISLAND_API ATheIslandCharacterBase : public ACharacter
+class THEISLAND_API ACharacterBase : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	ATheIslandCharacterBase();
+	ACharacterBase();
 
 protected:
 	virtual void BeginPlay() override;
