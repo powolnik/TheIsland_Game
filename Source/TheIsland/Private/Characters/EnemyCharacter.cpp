@@ -8,7 +8,7 @@
 
 AEnemyCharacter::AEnemyCharacter()
 {
-
+	// ...
 }
 
 void AEnemyCharacter::HighlightActor(bool bHighlight)
