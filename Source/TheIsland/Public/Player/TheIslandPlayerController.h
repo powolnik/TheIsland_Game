@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
 #include "TheIslandPlayerController.generated.h"
 
@@ -40,12 +41,14 @@ class UInputMappingContext;
 	 */
 class UEnhancedInputLocalPlayerSubsystem;
 
+class UInputAction;
+
 	/**
-	* @struct FInputActionsValue
-	* @brief Forward declaration of FInputActionsValue struct.
-	*
-	* FInputActionsValue holds values related to input actions.
-	*/
+	 * @struct FInputActionsValue
+	 * @brief Forward declaration of FInputActionsValue struct.
+	 *
+	 * FInputActionsValue holds values related to input actions.
+	 */
 struct FInputActionsValue;
 
 #pragma endregion ForwardDeclaration 
@@ -59,17 +62,21 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> PlayerInputContext;
 
+	/*UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UEnhancedInputLocalPlayerSubsystem> InputSubsystem;*/
+
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UEnhancedInputLocalPlayerSubsystem> InputSubsystem;
-
-
+	TObjectPtr<UInputAction> MoveAction;
 
 private:
-	void Move(const FInputActionsValue& InputActionValue);
+	UFUNCTION()
+	void Move(const FInputActionValue& InputActionValue);
+
 	void SetupInputSubsystem();
 	void SetupMouseCursorProperties();
 

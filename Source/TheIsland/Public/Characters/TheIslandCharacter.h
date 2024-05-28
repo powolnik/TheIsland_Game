@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Characters/TheIslandCharacterBase.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "TheIslandCharacter.generated.h"
 
 /**
@@ -14,4 +15,6 @@ class THEISLAND_API ATheIslandCharacter : public ATheIslandCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+	ATheIslandCharacter();
 };
