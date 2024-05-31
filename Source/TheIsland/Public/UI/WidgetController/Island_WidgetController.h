@@ -7,6 +7,7 @@
 
 class UAbilitySystemComponent;
 
+
 USTRUCT(BlueprintType)
 struct FWidgetControllerParameters
 {
@@ -22,6 +23,7 @@ struct FWidgetControllerParameters
 	UPROPERTY(EditAnywhere, BlueprintReadWrite/*, Category = "Island|WidgetController|Parameters"*/)
 	TObjectPtr<APlayerState> PlayerState = nullptr; 
 };
+
 
 UCLASS()
 class THEISLAND_API UIsland_WidgetController : public UObject

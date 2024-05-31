@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "HighlightActorInterface.generated.h"
 
-// This class does not need to be modified.
+
 UINTERFACE(MinimalAPI)
 class UHighlightActorInterface : public UInterface
 {

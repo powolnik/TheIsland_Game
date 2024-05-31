@@ -1,12 +1,17 @@
 // RW&MH
 
 #include "Characters/EnemyCharacter.h"
+#include "AbilitySystem/Island_AbilitySystemComponent.h"
+#include "AbilitySystem/Island_AttributeSet.h"
 #include "TheIsland/TheIsland.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
 {
-	// ...
+	AbilitySystemComponent = CreateDefaultSubobject<UIsland_AbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UIsland_AttributeSet>(TEXT("AttributeSet"));
 }
 
 void AEnemyCharacter::HighlightActor(bool bHighlight)

@@ -31,7 +31,6 @@ private:
 
 	TScriptInterface<IEnemyInterface> LastActor;
 	TScriptInterface<IEnemyInterface> ThisActor;
-
 	
 	UFUNCTION()
 	void Move(const FInputActionValue& InputActionValue);
