@@ -7,13 +7,10 @@
 #include "Interaction/EnemyInterface.h"
 #include "Island_PlayerController.generated.h"
 
-#pragma region ForwardDeclarations
-	class UInputMappingContext;
-	class UEnhancedInputLocalPlayerSubsystem;
-	class UInputAction;
-
-	struct FInputActionsValue;
-#pragma endregion 
+class UInputMappingContext;
+class UEnhancedInputLocalPlayerSubsystem;
+class UInputAction;
+struct FInputActionsValue;
 
 
 UCLASS()

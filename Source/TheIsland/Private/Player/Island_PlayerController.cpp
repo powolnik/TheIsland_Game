@@ -82,10 +82,11 @@ void AIsland_PlayerController::Move(const FInputActionValue& InputActionValue)
 
 void AIsland_PlayerController::SetupInputSubsystem()
 {
-	UEnhancedInputLocalPlayerSubsystem* InputSubsystem =
-		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	UInputMappingContext* ValidInputContext = CastChecked<UInputMappingContext>(PlayerInputContext);
-	InputSubsystem->AddMappingContext(ValidInputContext , 0);
+	if (UEnhancedInputLocalPlayerSubsystem* InputSubsystem =
+		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
+	{
+		InputSubsystem->AddMappingContext(PlayerInputContext, 0);
+	}
 }
 
 void AIsland_PlayerController::SetupMouseCursorProperties()
