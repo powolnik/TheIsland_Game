@@ -1,8 +1,10 @@
 // RW&MH
 
 #include "Characters/PlayerCharacter.h"
+#include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/Island_PlayerController.h"
+#include "Player/Island_PlayerState.h"
 #include "UI/HUD/Island_HUD.h"
 
 
@@ -22,12 +24,18 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+
+	//Init ability actor info for the server
+	InitializeAbilityActorInfo();
 	InitializeHUD();
 }
 
 void APlayerCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
+	
+	//Init ability actor info for the client
+	InitializeAbilityActorInfo();
 	InitializeHUD();
 }
 
@@ -39,6 +47,14 @@ void APlayerCharacter::InitializeHUD()
 		{
 			HUD->InitializeOverlay(PC, GetPlayerState());
 		}
-		
 	}
+}
+
+void APlayerCharacter::InitializeAbilityActorInfo()
+{
+	AIsland_PlayerState* IslandPlayerState = Cast<AIsland_PlayerState>(GetPlayerState());
+	check(IslandPlayerState);
+	IslandPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(IslandPlayerState, this);
+	AbilitySystemComponent = IslandPlayerState->GetAbilitySystemComponent();
+	AttributeSet = IslandPlayerState->GetAttributeSet();
 }

@@ -15,5 +15,10 @@ class THEISLAND_API AEnemyCharacter : public ACharacterBase, public IEnemyInterf
 
 public:
 	AEnemyCharacter();
+
+	/** Enemy Interface */		
 	virtual void HighlightActor(bool bHighlight) override;
+
+protected:
+	virtual void BeginPlay() override;
 };

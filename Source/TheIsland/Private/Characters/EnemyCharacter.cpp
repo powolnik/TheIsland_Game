@@ -25,3 +25,10 @@ void AEnemyCharacter::HighlightActor(bool bHighlight)
 	}
 	GetMesh()->SetRenderCustomDepth(false);
 }
+
+void AEnemyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}

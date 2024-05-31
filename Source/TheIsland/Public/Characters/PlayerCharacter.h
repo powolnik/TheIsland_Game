@@ -18,4 +18,7 @@ public:
 	virtual void OnRep_PlayerState() override;
 	
 	void InitializeHUD();
+	
+private:
+	void InitializeAbilityActorInfo();
 };
