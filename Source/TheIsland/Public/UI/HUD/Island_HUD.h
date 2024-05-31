@@ -20,10 +20,6 @@ public:
 	UPROPERTY()
 	TObjectPtr<UIsland_UserWidget> OverlayWidget;
 
-	UIsland_OverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParameters& WCParameters);
-
-	void InitializeOverlay(APlayerController* PController, APlayerState* PState);
-
 private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UIsland_UserWidget> OverlayWidgetClass;
@@ -33,4 +29,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UIsland_OverlayWidgetController> OverlayWidgetControllerClass;
+
+public:
+	UIsland_OverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParameters& WCParameters);
+	void InitializeOverlay(APlayerController* PController, APlayerState* PState);
 };

@@ -21,3 +21,4 @@ class THEISLAND_API IHighlightActorInterface
 public:
 	virtual void HighlightActor(bool bHighlight = false) = 0;
 };
+/*UObject& LA_GetObjRef = *LastActor.GetObjectRef();*/

@@ -15,12 +15,13 @@ class THEISLAND_API UIsland_UserWidget : public UUserWidget
 public:
 	UFUNCTION(BlueprintCallable, Category = "Island|Widgets|Functions")
 	void SetWidgetController(UObject* InWidgetController);
-	
-	UPROPERTY(BlueprintReadOnly, Category = "Island|Widgets")
-	TObjectPtr<UObject> WidgetController;
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Island|Widgets")
 	void WidgetControllerSet();
+
+public:
+	UPROPERTY(BlueprintReadOnly, Category = "Island|Widgets")
+	TObjectPtr<UObject> WidgetController;
 	
 };

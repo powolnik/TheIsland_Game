@@ -7,7 +7,7 @@
 
 UIsland_OverlayWidgetController* AIsland_HUD::GetOverlayWidgetController(const FWidgetControllerParameters& WCParameters)
 {
-	if (OverlayWidgetController == nullptr)
+	if (!OverlayWidgetController)
 	{
 		OverlayWidgetController = NewObject<UIsland_OverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParameters(WCParameters);

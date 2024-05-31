@@ -9,6 +9,7 @@ AIsland_PlayerState::AIsland_PlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UIsland_AbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
 	AttributeSet = CreateDefaultSubobject<UIsland_AttributeSet>(TEXT("AttributeSet"));
 	

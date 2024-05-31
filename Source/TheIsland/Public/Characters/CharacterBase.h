@@ -18,6 +18,7 @@ class THEISLAND_API ACharacterBase : public ACharacter, public IAbilitySystemInt
 
 public:
 	ACharacterBase();
+	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	

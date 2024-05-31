@@ -6,7 +6,6 @@
 ACharacterBase::ACharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	
 }
 
 UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
