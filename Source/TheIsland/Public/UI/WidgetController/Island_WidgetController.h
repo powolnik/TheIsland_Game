@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Island_WidgetController.generated.h"
 
+class UAttributeSet;
 class UAbilitySystemComponent;
 
 
@@ -17,11 +18,18 @@ struct FWidgetControllerParameters
 	FWidgetControllerParameters(APlayerController* PController, APlayerState* PState)
 	: PlayerController(PController), PlayerState(PState) {}
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite/*, Category = "Island|WidgetController|Parameters"*/)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Island|WidgetController|Parameters")
 	TObjectPtr<APlayerController> PlayerController = nullptr;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite/*, Category = "Island|WidgetController|Parameters"*/)
-	TObjectPtr<APlayerState> PlayerState = nullptr; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Island|WidgetController|Parameters")
+	TObjectPtr<APlayerState> PlayerState = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Island|WidgetController|Parameters")
+	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Island|WidgetController|Parameters")
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
+	
 };
 
 
